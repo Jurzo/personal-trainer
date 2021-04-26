@@ -38,25 +38,23 @@ function TrainingsList() {
 
   const columns = [
     { field: 'activity', sortable: true, filter: true },
-    { field: 'duration', sortable: true, filter: true },
+    { field: 'duration', sortable: true, filter: true , suppressSizeToFit: true, width: 150 },
     { field: 'date', sortable: true, filter: true, valueFormatter: dateFormatter },
     { field: 'customer', sortable: true, filter: true, headerName: 'Customer', valueGetter: fullName }
   ];
 
   const gridOptions = {
     // PROPERTIES
-    // Objects like myRowData and myColDefs would be created in your application
     rowData: trainings,
     columnDefs: columns,
     pagination: true,
-    rowSelection: 'single',
     domLayout: 'autoHeight',
+    animateRows: true,
+    suppressCellSelection: true,
 
     // EVENTS
-    // Add event handlers
-    onRowClicked: event => console.log('A row was clicked'),
-    onColumnResized: event => console.log('A column was resized'),
-    onGridReady: event => sizeToFit(),
+    onRowClicked: _ => console.log('A row was clicked'),
+    onGridReady: _ => sizeToFit()
   }
 
   if (isLoading) {
@@ -64,7 +62,7 @@ function TrainingsList() {
   }
 
   return (
-    <div className="ag-theme-material" style={{ width: '65%', margin: 'auto' }}>
+    <div className="ag-theme-material" style={{ width: '50%', margin: 'auto' }}>
       <AgGridReact
         gridOptions={gridOptions}
       />

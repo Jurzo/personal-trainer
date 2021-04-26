@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -8,7 +8,6 @@ import 'ag-grid-community/dist/styles/ag-theme-material.css';
 function CustomerList() {
   const [customers, setCustomers] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [gridApi, setGridApi] = useState(null);
 
   useEffect(() => {
     fetchCustomers();
@@ -28,28 +27,33 @@ function CustomerList() {
     gridOptions.api.sizeColumnsToFit();
   }
 
+  const fullName = (params) => {
+    return params.data.firstname + ' ' + params.data.lastname;
+  }
+
+  const fullAddress = (params) => {
+    return params.data.city + ', ' + params.data.postcode + ', ' + params.data.streetaddress;
+  }
+
   const columns = [
-    { field: 'firstname', sortable: true, filter: true },
-    { field: 'lastname', sortable: true, filter: true },
-    { field: 'city', sortable: true, filter: true },
+    { field: 'customer', sortable: true, filter: true, headerName: 'Customer', valueGetter: fullName },
+    { field: 'address', sortable: true, filter: true, valueGetter: fullAddress  },
     { field: 'email', sortable: true, filter: true },
-    { field: 'phone', sortable: true, filter: true }
+    { field: 'phone', sortable: true, filter: true , suppressSizeToFit: true, width: 190 }
   ];
 
   const gridOptions = {
     // PROPERTIES
-    // Objects like myRowData and myColDefs would be created in your application
     rowData: customers,
     columnDefs: columns,
     pagination: true,
-    rowSelection: 'single',
     domLayout: 'autoHeight',
+    animateRows: true,
+    suppressCellSelection: true,
 
     // EVENTS
-    // Add event handlers
-    onRowClicked: event => console.log('A row was clicked'),
-    onColumnResized: event => console.log('A column was resized'),
-    onGridReady: event => sizeToFit(),
+    onRowClicked: _ => console.log('A row was clicked'),
+    onGridReady: _ => sizeToFit()
   }
 
   if (isLoading) {
