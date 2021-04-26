@@ -24,7 +24,7 @@ function AddTraining(props) {
     setTraining({
       ...training,
       customer: props.url,
-      date: moment().format('yyyy-MM-DDTHH:mm:ss')
+      date: moment().format('yyyy-MM-DDTHH:mm')
     });
     setOpen(true);
   }
@@ -52,7 +52,7 @@ function AddTraining(props) {
         Add Training
         </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add customer</DialogTitle>
+        <DialogTitle id="form-dialog-title">Add training to {props.name}</DialogTitle>
         <DialogContent>
           <TextField
             margin="dense"
