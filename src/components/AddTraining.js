@@ -45,7 +45,7 @@ function AddTraining(props) {
   return (
     <div>
       <Button
-      style={{ margin: '10px 10px 0px 0px', float: 'right' }}
+        style={{ margin: '10px 10px 0px 0px', float: 'left' }}
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}>

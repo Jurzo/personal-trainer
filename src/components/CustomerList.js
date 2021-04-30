@@ -137,6 +137,7 @@ function CustomerList() {
     domLayout: 'autoHeight',
     animateRows: true,
     rowSelection: 'single',
+    paginationPageSize: 10,
 
     // EVENTS
     onRowClicked: event => setSelection(event.data),
@@ -149,12 +150,14 @@ function CustomerList() {
 
   return (
     <div>
-      <AddCustomer addCustomer={addCustomer} />
-      <AddTraining
-        url={selection.links?.[0].href}
-        name={selection.firstname + ' ' + selection.lastname}
-        addTraining={addTraining}
-      />
+      <div style={{ width: '65%', height: '60px', margin: 'auto'}}>
+        <AddCustomer addCustomer={addCustomer} />
+        <AddTraining
+          url={selection.links?.[0].href}
+          name={selection.firstname + ' ' + selection.lastname}
+          addTraining={addTraining}
+        />
+      </div>
       <div className="ag-theme-material" style={{ width: '65%', margin: 'auto'}}>
         <AgGridReact
           //rowData piti siirtää tänne, että lista päivittyy

@@ -9,7 +9,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
 
-function TrainingsList() {
+function TrainingsList(props) {
   const [trainings, setTrainings] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
@@ -87,6 +87,7 @@ function TrainingsList() {
     domLayout: 'autoHeight',
     animateRows: true,
     suppressCellSelection: true,
+    paginationPageSize: 10,
 
     // EVENTS
     onGridReady: _ => sizeToFit()
