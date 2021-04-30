@@ -3,7 +3,7 @@ import moment from 'moment';
 import 'react-big-calendar-like-google/lib/css/react-big-calendar.css';
 import { useEffect, useState } from 'react';
 
-function Calendar(props) {
+function Calendar() {
   BigCalendar.momentLocalizer(moment);
   const [events, setEvents] = useState([]);
   const [viewDate, setViewDate] = useState(moment().toDate());
