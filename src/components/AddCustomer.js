@@ -28,11 +28,20 @@ function AddCustomer(props) {
 
   const handleSave = () => {
     props.addCustomer(customer);
+    setCustomer({
+      firstname: '',
+      lastname: '',
+      streetaddress: '',
+      postcode: '',
+      city: '',
+      email: '',
+      phone: ''
+    });
     setOpen(false);
   }
 
   const inputChanged = (event) => {
-    setCustomer({...customer, [event.target.name]: event.target.value});
+    setCustomer({ ...customer, [event.target.name]: event.target.value });
   }
 
   return (
