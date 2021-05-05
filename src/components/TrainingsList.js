@@ -9,7 +9,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
 
-function TrainingsList(props) {
+function TrainingsList() {
   const [trainings, setTrainings] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
